@@ -1,0 +1,106 @@
+/* Henry Liang — portfolio. Plain CSS, no build step. */
+:root {
+  --ink: #1d1f24;
+  --muted: #5b616e;
+  --line: #e3e5ea;
+  --bg: #fbfbfc;
+  --card: #ffffff;
+  --accent: #2f5bd3;
+  --accent-soft: #eaf0ff;
+  --radius: 10px;
+  --max: 960px;
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.65;
+  font-size: 17px;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+
+/* Header / nav */
+.site-header { border-bottom: 1px solid var(--line); background: var(--card); position: sticky; top: 0; z-index: 10; }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; flex-wrap: wrap; }
+.brand { font-weight: 700; text-decoration: none; color: var(--ink); letter-spacing: -0.01em; }
+.nav { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
+.nav a { text-decoration: none; color: var(--muted); font-weight: 500; }
+.nav a:hover, .nav a[aria-current="page"] { color: var(--ink); }
+.nav a[aria-current="page"] { border-bottom: 2px solid var(--accent); }
+
+/* Hero */
+.hero { padding: 88px 0 56px; }
+.hero h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; margin: 0 0 16px; letter-spacing: -0.02em; }
+.hero .tagline { font-size: 1.2rem; color: var(--muted); max-width: 640px; margin: 0 0 28px; }
+.btn { display: inline-block; background: var(--accent); color: #fff; text-decoration: none; padding: 12px 22px; border-radius: 999px; font-weight: 600; }
+.btn.ghost { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); margin-left: 8px; }
+
+/* Sections */
+section { padding: 40px 0; }
+h2 { font-size: 1.6rem; letter-spacing: -0.01em; margin: 0 0 20px; }
+h3 { font-size: 1.15rem; margin: 28px 0 8px; }
+.eyebrow { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 700; color: var(--accent); margin: 0 0 8px; }
+
+/* Project cards */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: transform .15s, box-shadow .15s; }
+.card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(20, 30, 60, .08); }
+.card .thumb { aspect-ratio: 16 / 10; background: var(--accent-soft); object-fit: cover; width: 100%; }
+.card .body { padding: 20px; }
+.card h3 { margin: 4px 0 8px; }
+.card p { margin: 0; color: var(--muted); font-size: .95rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.tag { background: var(--accent-soft); color: var(--accent); font-size: .78rem; padding: 3px 10px; border-radius: 999px; font-weight: 600; }
+
+/* Project page */
+.project-hero { padding: 56px 0 24px; }
+.project-hero h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin: 0 0 12px; line-height: 1.2; }
+.project-hero .summary { font-size: 1.12rem; color: var(--muted); max-width: 720px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; margin: 28px 0; }
+.facts dt { font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 700; }
+.facts dd { margin: 4px 0 0; font-weight: 500; }
+figure { margin: 28px 0; }
+figure img, .video { border-radius: var(--radius); border: 1px solid var(--line); background: var(--accent-soft); }
+figcaption { font-size: .88rem; color: var(--muted); margin-top: 8px; }
+.video { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.prose { max-width: 720px; }
+.prose ul { padding-left: 1.2em; }
+.callout { background: var(--accent-soft); border-left: 4px solid var(--accent); padding: 14px 18px; border-radius: 6px; margin: 20px 0; }
+.pager { display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid var(--line); padding-top: 24px; margin-top: 48px; flex-wrap: wrap; }
+
+/* About */
+.about-grid { display: grid; grid-template-columns: 240px 1fr; gap: 40px; align-items: start; }
+.avatar { width: 240px; aspect-ratio: 1; border-radius: 50%; object-fit: cover; background: var(--accent-soft); }
+.skills { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; }
+.skills li { border: 1px solid var(--line); background: var(--card); padding: 4px 12px; border-radius: 999px; font-size: .9rem; }
+@media (max-width: 720px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .avatar { width: 160px; }
+  .btn.ghost { margin: 10px 0 0; }
+}
+
+/* Draft markers: every one must be replaced before publishing (see README.md) */
+.todo { background: #fff3b0; outline: 1px dashed #c9a400; padding: 0 3px; }
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--line); margin-top: 64px; padding: 28px 0; color: var(--muted); font-size: .9rem; }
+.site-footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+/* Initials badge, used until a portrait photo is added */
+.avatar-initials { display: grid; place-items: center; font-size: 4rem; font-weight: 700; color: var(--accent); letter-spacing: .02em; }
+
+/* Tall artwork: cap the width so a portrait poster doesn't fill several screens */
+figure.poster img { max-width: 520px; margin: 0 auto; }
+figure.poster figcaption { text-align: center; }
+figure.narrow img { max-width: 720px; }
+.prose .skills { padding-left: 0; }
