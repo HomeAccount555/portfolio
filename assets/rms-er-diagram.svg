@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 470" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif">
+  <rect width="1060" height="470" fill="#fbfbfc"/>
+  <defs>
+    <style>
+      .box{fill:#fff;stroke:#2f5bd3;stroke-width:2}
+      .hd{fill:#2f5bd3}
+      .ht{fill:#fff;font-weight:700;font-size:15px}
+      .f{fill:#1d1f24;font-size:14px}
+      .k{fill:#2f5bd3;font-size:11px;font-weight:700}
+      .ln{stroke:#5b616e;stroke-width:2;fill:none}
+      .c{fill:#5b616e;font-size:13px;font-weight:700}
+    </style>
+  </defs>
+  <!-- relationships -->
+  <path class="ln" d="M240 80 H300"/><text class="c" x="246" y="72">1</text><text class="c" x="286" y="72">N</text>
+  <path class="ln" d="M500 80 H560"/><text class="c" x="506" y="72">N</text><text class="c" x="548" y="72">1</text>
+  <path class="ln" d="M660 150 V300"/><text class="c" x="668" y="168">1</text><text class="c" x="668" y="292">N</text>
+  <path class="ln" d="M500 350 H560"/><text class="c" x="506" y="342">1</text><text class="c" x="546" y="342">N</text><text class="c" x="503" y="372" font-weight="400">chef</text>
+  <path class="ln" d="M760 350 H820"/><text class="c" x="766" y="342">1</text><text class="c" x="806" y="342">N</text>
+  <path class="ln" d="M920 176 V300"/><text class="c" x="928" y="194">1</text><text class="c" x="928" y="292">N</text>
+
+  <!-- DINING_TABLE -->
+  <rect class="box" x="40" y="30" width="200" height="98" rx="6"/><rect class="hd" x="40" y="30" width="200" height="36" rx="6"/>
+  <text class="ht" x="54" y="54">DINING_TABLE</text>
+  <text class="k" x="54" y="88">PK</text><text class="f" x="80" y="88">table_id</text>
+  <text class="f" x="80" y="114">capacity</text>
+  <!-- CHOOSES -->
+  <rect class="box" x="300" y="30" width="200" height="98" rx="6"/><rect class="hd" x="300" y="30" width="200" height="36" rx="6"/>
+  <text class="ht" x="314" y="54">CHOOSES</text>
+  <text class="k" x="314" y="88">FK</text><text class="f" x="340" y="88">customer_id</text>
+  <text class="k" x="314" y="114">FK</text><text class="f" x="340" y="114">table_id</text>
+  <!-- CUSTOMER -->
+  <rect class="box" x="560" y="30" width="200" height="98" rx="6"/><rect class="hd" x="560" y="30" width="200" height="36" rx="6"/>
+  <text class="ht" x="574" y="54">CUSTOMER</text>
+  <text class="k" x="574" y="88">PK</text><text class="f" x="600" y="88">customer_id</text>
+  <text class="f" x="600" y="114">name</text>
+  <!-- DISH -->
+  <rect class="box" x="820" y="30" width="200" height="124" rx="6"/><rect class="hd" x="820" y="30" width="200" height="36" rx="6"/>
+  <text class="ht" x="834" y="54">DISH</text>
+  <text class="k" x="834" y="88">PK</text><text class="f" x="860" y="88">dish_id</text>
+  <text class="f" x="860" y="114">name</text>
+  <text class="f" x="860" y="140">price</text>
+  <!-- STAFF -->
+  <rect class="box" x="300" y="300" width="200" height="98" rx="6"/><rect class="hd" x="300" y="300" width="200" height="36" rx="6"/>
+  <text class="ht" x="314" y="324">STAFF</text>
+  <text class="k" x="314" y="358">PK</text><text class="f" x="340" y="358">staff_id</text>
+  <text class="f" x="340" y="384">name</text>
+  <!-- ORDERS -->
+  <rect class="box" x="560" y="300" width="200" height="150" rx="6"/><rect class="hd" x="560" y="300" width="200" height="36" rx="6"/>
+  <text class="ht" x="574" y="324">ORDERS</text>
+  <text class="k" x="574" y="358">PK</text><text class="f" x="600" y="358">order_no</text>
+  <text class="k" x="574" y="384">FK</text><text class="f" x="600" y="384">customer_id</text>
+  <text class="k" x="574" y="410">FK</text><text class="f" x="600" y="410">chef_id</text>
+  <text class="f" x="600" y="436">order_time</text>
+  <!-- ORDER_ITEM -->
+  <rect class="box" x="820" y="300" width="200" height="124" rx="6"/><rect class="hd" x="820" y="300" width="200" height="36" rx="6"/>
+  <text class="ht" x="834" y="324">ORDER_ITEM</text>
+  <text class="k" x="834" y="358">FK</text><text class="f" x="860" y="358">order_no</text>
+  <text class="k" x="834" y="384">FK</text><text class="f" x="860" y="384">dish_id</text>
+  <text class="f" x="860" y="410">quantity</text>
+</svg>
