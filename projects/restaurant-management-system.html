@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Restaurant Management System | Henry Liang</title>
+  <meta name="description" content="Database design case study: a MySQL restaurant management system built by a team of four.">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">Henry Liang</a>
+      <nav aria-label="Main">
+        <ul class="nav">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#work" aria-current="page">Work</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../assets/Henry-Liang-Resume.pdf">Resume</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="project-hero">
+      <p class="eyebrow">Database design · Team leadership</p>
+      <h1>Restaurant Management System</h1>
+      <p class="summary">A web app backed by a MySQL database that helps a restaurant keep track of its customers and tables, its menu and prices, its staff, and every order. I built it with three teammates for Database Systems I. I led the team, helped design the database, and produced our demo video.</p>
+    </section>
+
+    <div class="video">
+      <iframe src="https://www.youtube-nocookie.com/embed/IsSrImfWlaw" title="Restaurant Management System implementation demo" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+    <p><small>Our implementation demo, which I recorded and narrated. It walks through the app and the code behind each page.</small></p>
+
+    <dl class="facts">
+      <div><dt>Skills</dt><dd>Database design, SQL, team leadership</dd></div>
+      <div><dt>Tools</dt><dd>MySQL, Python (Flask), HTML/CSS, GitHub</dd></div>
+      <div><dt>Project type</dt><dd>Course project, Database Systems I</dd></div>
+      <div><dt>Timeline</dt><dd>January – April 2026</dd></div>
+      <div><dt>Team</dt><dd>4 students</dd></div>
+      <div><dt>My role</dt><dd>Team lead, main presenter, database design, demo video</dd></div>
+    </dl>
+
+    <div class="prose">
+      <h2>The problem</h2>
+      <p>A restaurant runs on information that changes all day: who is sitting at which table, what's on the menu and what it costs, who is working, and which orders are open. When that information is scattered, staff waste time and mistakes slip through. Our goal was to design one database that keeps all of it connected and consistent, and to build a simple app on top of it so the data could actually be used.</p>
+
+      <h2>My role</h2>
+      <p>Besides building, I kept the four of us organized:</p>
+      <ul>
+        <li>I scheduled our weekly meetings and set deadlines for each part of the work.</li>
+        <li>I kept a running list of what was finished and what was still open, so nothing fell through the cracks.</li>
+        <li>I was our main speaker in meetings and in the final presentation.</li>
+        <li>I contributed ideas and calculations to the database design and wrote part of the database code.</li>
+        <li>I recorded and put together our demo video.</li>
+      </ul>
+
+      <h2>Designing the database</h2>
+      <p>We started by listing what the restaurant needed to track, then turned that list into tables and relationships. We ended up with seven tables:</p>
+      <ul>
+        <li><strong>CUSTOMER</strong> and <strong>DINING_TABLE</strong>, linked through <strong>CHOOSES</strong>, which records which table each customer is seated at.</li>
+        <li><strong>DISH</strong> holds the menu: each dish's name and price.</li>
+        <li><strong>STAFF</strong> holds employees. Each order points to the chef who cooks it.</li>
+        <li><strong>ORDERS</strong> records who ordered, when, and which chef. <strong>ORDER_ITEM</strong> lists the dishes and quantities in each order, so one order can hold several dishes.</li>
+      </ul>
+    </div>
+
+    <figure>
+      <img src="../assets/rms-er-diagram.svg" alt="Entity-relationship diagram: CUSTOMER links to DINING_TABLE through CHOOSES; ORDERS links to CUSTOMER and STAFF; ORDER_ITEM links ORDERS to DISH">
+      <figcaption>The database structure: seven tables and how they connect (1 = one, N = many).</figcaption>
+    </figure>
+
+    <div class="prose">
+      <h2>Building the app</h2>
+      <p>The app has a home dashboard with six sections: Customers, Menu, Staff, Tables, Orders and Queries. Each section lists its records in a table you can sort by clicking a column header, and lets you add, update or delete records.</p>
+    </div>
+
+    <figure>
+      <img src="../assets/rms-dashboard.jpg" alt="The app's home dashboard with six tiles: Customers, Menu, Staff, Tables, Orders and Queries">
+      <figcaption>The home dashboard. Each tile opens one part of the database.</figcaption>
+    </figure>
+
+    <figure>
+      <img src="../assets/rms-menu.jpg" alt="The Menu page listing five dishes with prices, an Update Price field for each, and a confirmation that a price was updated">
+      <figcaption>The Menu page. Staff can add dishes, change a price in place, or remove a dish. The page also shows the total number of dishes and the average price, both calculated by SQL queries.</figcaption>
+    </figure>
+
+    <div class="prose">
+      <h2>Challenges</h2>
+      <p><strong>Letting users sort safely.</strong> We wanted every list to be sortable by any column. The easy way is to paste the column name from the web address straight into the SQL query, but that would let someone inject their own SQL. Instead, each page only accepts column names from a fixed list, and anything else falls back to a safe default.</p>
+      <p><strong>Answering harder questions.</strong> The Queries section goes beyond simple lists. One query joins five tables to show each order with its customer, dish and chef. Another finds "customers who ordered every dish," which SQL has no direct command for. We wrote it as a double <code>NOT EXISTS</code>: a customer qualifies only if there is no dish they haven't ordered. Getting that logic right took several tries.</p>
+      <p><strong>Keeping four people in sync.</strong> With four schedules and one shared database design, a change in one table could break someone else's page. Weekly meetings and a shared list of open tasks helped us catch those conflicts early instead of the night before the deadline.</p>
+    </div>
+
+    <figure>
+      <img src="../assets/rms-customers.jpg" alt="The Customers page listing seven customers and their table numbers, with a 'Customers Who Ordered Every Dish' result below">
+      <figcaption>The Customers page, with the result of the "customers who ordered every dish" query underneath. With the sample data, no customer qualifies yet.</figcaption>
+    </figure>
+
+    <div class="prose">
+      <h2>Outcome</h2>
+      <p>We delivered a working app on a seven-table MySQL database. It supports adding, editing, deleting and sorting records across customers, tables, menu, staff and orders, and has a reports page with join, division and aggregate queries. I presented it in the demo video above.</p>
+
+      <h2>Reflection</h2>
+      <p>This project taught me that most of the work in a database happens before any code is written. Every time we had to change a table later, it rippled into several pages, so a few extra hours on the design up front would have saved us more time than that. I also learned that leading a team is mostly about making progress visible: once everyone could see what was done and what wasn't, the meetings got shorter and the work got more even.</p>
+      <p>Next time I would test with more realistic sample data from the start, so queries like "ordered every dish" show a meaningful result. I would also add input checks with clear error messages, so a typo in a price or ID doesn't reach the database.</p>
+    </div>
+
+    <nav class="pager" aria-label="Projects">
+      <a href="../index.html#work">← All work</a>
+      <a href="citation-guide.html">Next: Citation Guide →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 Henry (Yunhe) Liang</span>
+      <span><a href="mailto:yla881@sfu.ca">yla881@sfu.ca</a></span>
+    </div>
+  </footer>
+</body>
+</html>
